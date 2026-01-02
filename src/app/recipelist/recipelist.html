@@ -1,0 +1,62 @@
+<table class="table table-striped" *ngIf="allReceipe.length > 0">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th>Title</th>
+      <th>Ingredients</th>
+      <th>Instructions</th>
+      <th>Cooking Time</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let recipe of allReceipe; let i = index">
+      <th scope="row">{{ i + 1 }}</th>
+      <td>{{ recipe.recipeTitle }}</td>
+      <td>{{ recipe.recipeIngredients }}</td>
+      <td>{{ recipe.recipeInstructions }}</td>
+      <td>{{ recipe.recipeCookingTime }}</td>
+      <td>
+        <button class="btn btn-sm btn-primary me-2" (click)="openEditModal(recipe)">
+          Edit
+        </button>
+        <button class="btn btn-sm btn-danger" (click)="deleteRecipe(recipe)">
+          Delete
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- Edit Modal -->
+<div class="modal fade" tabindex="-1" [ngClass]="{'show d-block': selectedRecipe}" *ngIf="selectedRecipe">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Edit Recipe</h5>
+        <button type="button" class="btn-close" (click)="closeModal()"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="editForm" (ngSubmit)="finalUpdateRecipe()">
+          <div class="mb-2">
+            <label>Title</label>
+            <input class="form-control" formControlName="recipeTitle" />
+          </div>
+          <div class="mb-2">
+            <label>Ingredients</label>
+            <textarea class="form-control" formControlName="recipeIngredients"></textarea>
+          </div>
+          <div class="mb-2">
+            <label>Instructions</label>
+            <textarea class="form-control" formControlName="recipeInstructions"></textarea>
+          </div>
+          <div class="mb-2">
+            <label>Cooking Time</label>
+            <input type="number" class="form-control" formControlName="recipeCookingTime" />
+          </div>
+          <button type="submit" class="btn btn-success w-100">Update</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

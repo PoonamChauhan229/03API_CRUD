@@ -1,22 +1,42 @@
-<form class="container mt-5 w-50">
- <div class="row">
-  <div class="col">
-    <input type="text" class="form-control" placeholder="First name" aria-label="First name">
+<form class="container mt-5 w-50" #registerForm="ngForm" (ngSubmit)="submitForm(registerForm)">
+  <div class="mb-3">
+    <label for="exampleInputuserName" class="form-label">UserName</label>
+    <input type="text" class="form-control" id="exampleInputuserName" aria-describedby="userName"
+    name="userName" #userName="ngModel" ngModel required
+    >
+    @if(userName.invalid && userName.touched){
+      <div class="text-danger fs-6">
+      Please provide a valid UserName.
+    </div>
+    }
   </div>
-  <div class="col">
-    <input type="text" class="form-control" placeholder="Last name" aria-label="Last name">
-  </div>
-</div>
 
   <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">Email address</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+    name="email" #email="ngModel" ngModel required
+    >
+     @if(email.invalid && email.touched){
+      <div class="text-danger fs-6">
+      Please provide a valid Email.
+    </div>
+    }
   </div>
 
   <div class="mb-3">
     <label for="exampleInputPassword1" class="form-label">Password</label>
-    <input type="password" class="form-control" id="exampleInputPassword1">
+    <input type="password" class="form-control" id="exampleInputPassword1"
+    name="password" #password="ngModel" ngModel required
+    >
+     @if(password.invalid && password.touched){
+      <div class="text-danger fs-6">
+      Please provide a valid Password.
+    </div>
+    }
+
   </div>
   
-  <button type="submit" class="btn btn-primary">Register</button>
+  <button type="submit" class="btn btn-primary"
+  [disabled]="registerForm.invalid"
+  >Register</button>
 </form>

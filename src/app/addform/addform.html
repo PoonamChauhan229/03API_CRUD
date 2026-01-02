@@ -1,0 +1,40 @@
+<div class="container d-flex justify-content-center align-items-center mt-3">
+  <form class="border p-3 rounded shadow w-50" 
+  [formGroup]="recipeFormData" (ngSubmit)="onSubmit()"
+  >
+    <h4 class="text-center mb-1">Add Recipe</h4>
+
+    <!-- Recipe Title -->
+    <div class="mb-2">
+      <label class="form-label">Recipe Title</label>
+      <input type="text" class="form-control" placeholder="Enter recipe name" required
+      formControlName="recipeTitle">
+    </div>
+
+    <!-- Ingredients -->
+    <div class="mb-2">
+      <label class="form-label">Ingredients</label>
+      <textarea class="form-control" rows="2" placeholder="Enter ingredients"
+      formControlName="recipeIngredients">
+      </textarea>
+    </div>
+
+    <!-- Instructions -->
+    <div class="mb-2">
+      <label class="form-label">Instructions</label>
+      <textarea class="form-control" rows="2" placeholder="Cooking steps"
+      formControlName="recipeInstructions"></textarea>
+    </div>
+
+    <!-- Cooking Time -->
+    <div class="mb-2">
+      <label class="form-label">Cooking Time (mins)</label>
+      <input type="number" class="form-control"
+       formControlName="recipeCookingTime">
+      
+    </div>
+
+    <!-- Submit -->
+    <button type="submit" class="btn btn-success w-100">Add Recipe</button>
+  </form>
+</div>
